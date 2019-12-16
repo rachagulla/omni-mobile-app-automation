@@ -53,10 +53,20 @@ public final class ConfigurationManager {
 
         capabilities.setCapability(MobileCapabilityType.APP, getValueForKey(APP_PATH));
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, getValueForKey(DEVICE_NAME));
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, getValueForKey(PLATFORM_NAME));
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, getValueForKey(PLATFORM));
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, getPlatformVersion());
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, isOnIOS() ? "XCUITest" : "UIAutomator2");
 
+        
+//        capabilities.setCapability("platformName", "iOS");
+//        capabilities.setCapability("platformVersion", "12.0.1");
+//        capabilities.setCapability("deviceName", "iPhone 8");
+//        capabilities.setCapability("udid", "auto");
+//        capabilities.setCapability("bundleId", "<your bundle id>");
+//        capabilities.setCapability("xcodeOrgId", "<your org id>");
+//        capabilities.setCapability("xcodeSigningId", "iPhone Developer");
+//        capabilities.setCapability("updatedWDABundleId", "<bundle id in scope of provisioning profile>");
+//        
         final int newCommandTimeoutInSecods = 300;
         capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeoutInSecods);
 

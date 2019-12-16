@@ -1,7 +1,7 @@
 package glue.hooks;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.core.api.Scenario;
 import org.openqa.selenium.WebDriverException;
 import utils.Helper;
@@ -14,6 +14,8 @@ public class Hooks {
         AppiumManager.getInstance().launchAppWithFreshInstall();
 
         System.out.println("Scenario: " + scenario.getName() + " started. Time millis: " + System.currentTimeMillis());
+//        System.out.println("JAVA_HOME: " + System.getenv("JAVA_HOME"));
+    
     }
 
     @After
@@ -24,7 +26,7 @@ public class Hooks {
             try {
                 Helper.takeScreenshotForScenario(scenario);
             } catch (WebDriverException exception) {
-                AppiumManager.getInstance().restartService();
+//                AppiumManager.getInstance().restartService();
             }
         }
     }

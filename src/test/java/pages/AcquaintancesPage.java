@@ -22,7 +22,7 @@ public class AcquaintancesPage {
     @iOSXCUITFindBy(accessibility = "NameLabel")
     private List<MobileElement> acquaintanceElements;
 
-    public AcquaintancesPage(AppiumDriver driver) {
+    public AcquaintancesPage(AppiumDriver<?> driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 

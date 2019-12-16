@@ -6,6 +6,10 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -33,9 +37,9 @@ public final class AppiumManager {
     }
 
     public void launchAppWithFreshInstall() {
-        if (service == null) {
-            startService();
-        }
+//        if (service == null) {
+//            startService();
+//        }
 
         if (driver == null) {
             startDriver();
@@ -49,8 +53,8 @@ public final class AppiumManager {
         System.out.println("Appium is restarting. Time " + System.currentTimeMillis());
 
         closeDriver();
-        closeService();
-        startService();
+//        closeService();
+//        startService();
         startDriver();
     }
 
@@ -77,12 +81,17 @@ public final class AppiumManager {
 
     private void startDriver() {
         DesiredCapabilities capabilities = ConfigurationManager.getInstance().getDesiredCapabilities();
-
-        if (Platform.isOnIOS()) {
-            driver = new IOSDriver(service.getUrl(), capabilities);
-        } else {
-            driver = new AndroidDriver(service.getUrl(), capabilities);
-        }
+        try {
+			URL serverUrl = new URL("http://localhost:4723" + "/wd/hub");
+	        if (Platform.isOnIOS()) {
+	            driver = new IOSDriver(serverUrl, capabilities);
+	        } else {
+	            driver = new AndroidDriver(serverUrl, capabilities);
+	        }
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private void closeDriver() {

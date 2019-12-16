@@ -1,6 +1,6 @@
 package glue.steps;
 
-import cucumber.api.java8.En;
+import  io.cucumber.java8.En;
 import fixture.persistence.ScenarioState;
 import pages.AddAcquaintancePage;
 import utils.Constants;
